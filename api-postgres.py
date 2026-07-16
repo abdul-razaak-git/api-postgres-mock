@@ -89,18 +89,6 @@ def get_database_connection(db_args):
         password=db_args.password,
         connect_timeout=30,
     )
-    """
-
-    return psycopg2.connect(
-        host="ds-ods-dev2.dataservices.awsnonprod.internal",
-        port="5432",
-        dbname="ods_db",
-        user="ods_etl_usr",
-        password="VanBCZCX",
-        connect_timeout=30,
-        # sslmode=os.getenv("PGSSLMODE", "prefer"),
-    )
-    """
 
 
 def create_tables(connection) -> None:

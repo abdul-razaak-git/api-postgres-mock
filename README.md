@@ -116,3 +116,15 @@ transaction via `process_batch`, before requesting the next page.
 - API calls retry on HTTP 429 with exponential backoff (or the
   `Retry-After` header if present), up to `MAX_RETRIES` (3) attempts.
 - Page size is capped at 100, the Explore v2.1 API's per-request maximum.
+
+## Query used to generate sample CSV
+
+select d.device_id , d.sensor_location , d.latitude , d.longitude, r.received_at ,
+r.air_temperature ,r.atmospheric_pressure ,r.average_wind_speed ,r.relative_humidity ,r.maximum_wind_direction , r.noise ,r.pm10
+from ling_lin.microclimate_device d
+join ling_lin.microclimate_reading r
+on d.device_id = r.device_id
+where d.device_id = 'ICTMicroclimate-01'
+and r.received_at::date = '2022-06-02'
+order by r.received_at ;
+
